@@ -6,5 +6,5 @@ The Pacinian corpuscle detects deep pressure, touch, and high frequency vibratio
 
 \## Week 1 Tuesday Bridge
 
-One simplified measure of correct dental hygiene technique can be defined by amount of force applied during cleaning ($F\\in\[F\_min,F\_max]$). The observed force ($F\_obs$) can fall into one of three possible events ${F\_obs < F\_min, F\_min <= F\_obs <= F\_max, F\_max < F\_obs}, where the event for the correct technique is ${F\_min <= F\_obs <= F\_max}$. Each of these events are disjoint, so the sum of the probabilities of each event occuring equals 1 ($P(F\_obs < F\_min)+P(F\_min <= F\_obs <= F\_max)+P(F\_max < F\_obs)$).
+One simplified measure of correct dental hygiene technique can be defined by amount of force applied during cleaning ($F\in[F_{min},F_{max}]$). The observed force ($F_{obs}$) can fall into one of three possible events $\{A:F_{obs} \lt F_{min};\ B:F_{min} <= F_{obs} \le F_{max};\ C:F_{max} \lt F_{obs}\}$, where the event for the correct technique is $Event\ B$. Each of these events are disjoint, so $P(A)+P(B)+P(C) = 1$.
 
