@@ -36,6 +36,30 @@ D=\begin{bmatrix}
 $$
 $$
 A^3 = \begin{bmatrix}
+3 & 1 \\
+0 & 2
+\end{bmatrix}\begin{bmatrix}
+3 & 1 \\
+0 & 2
+\end{bmatrix}\begin{bmatrix}
+3 & 1 \\
+0 & 2
+\end{bmatrix}
+$$
+$$
+A^3 = \begin{bmatrix}
+9 & 5 \\
+0 & 4
+\end{bmatrix}\begin{bmatrix}
+3 & 1 \\
+0 & 2
+\end{bmatrix} = \begin{bmatrix}
+27 & 19 \\
+0 & 8
+\end{bmatrix}
+$$
+$$
+A^3 = \begin{bmatrix}
 27 & 19 \\
 0 & 8
 \end{bmatrix} 
@@ -80,3 +104,21 @@ A^3 = \begin{bmatrix}
 0 & 8
 \end{bmatrix}
 $$
+
+I calculated the Fibonnaci eigenvalues as well. The Fibonacci Matrix is: 
+ $$
+F = \begin{bmatrix}
+1 & 1 \\
+1 & 0
+\end{bmatrix} 
+$$
+The eigenvalues and eigenvectors are:
+$$
+\lambda_1=\frac{1+\sqrt{5}}{2}\approx1.618;\ v_1 = \begin{bmatrix}\frac{1+\sqrt{5}}{2}\\ 1
+\end{bmatrix} 
+\\
+\lambda_2=\frac{1-\sqrt{5}}{2}\approx-0.618;\ v_2 = \begin{bmatrix}\frac{1-\sqrt{5}}{2}\\ 1
+\end{bmatrix} 
+\\
+$$
+Notice that the eigenvalue of $\lambda_1$ is the golden ratio.
