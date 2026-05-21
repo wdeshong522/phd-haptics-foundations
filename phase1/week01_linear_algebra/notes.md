@@ -106,7 +106,7 @@ A^3 = \begin{bmatrix}
 $$
 
 I calculated the Fibonnaci eigenvalues as well. The Fibonacci Matrix is: 
- $$
+$$
 F = \begin{bmatrix}
 1 & 1 \\
 1 & 0
