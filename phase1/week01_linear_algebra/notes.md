@@ -116,7 +116,7 @@ $$
 
  The eigenvalues and eigenvectors are:
 $$
-\lambda_1=\frac{1+\sqrt{5}}{2}\approx1.618;\ v_1 = \begin{bmatrix}\frac{1+\sqrt{5}}{2}\\ 1
+\lambda_1=\frac{1+\sqrt{5}}{2} \approx 1.618;\ v_1 = \begin{bmatrix}\frac{1+\sqrt{5}}{2}\\ 1
 \end{bmatrix} 
 $$
 <!--
