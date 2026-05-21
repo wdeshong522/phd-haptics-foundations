@@ -116,11 +116,11 @@ $$
 
 The eigenvalues and eigenvectors are:
 $$
-\lambda_{1}=\frac{1+\sqrt{5}}{2} 
+\lambda_{1}
 $$
 
 <!--
-\approx 1.618
+\lambda_{1}=\frac{1+\sqrt{5}}{2} \approx 1.618
 $$
 v_1 = 
 \begin{bmatrix}
