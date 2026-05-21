@@ -126,7 +126,8 @@ $$
 
 $$\lambda_2=\frac{1-\sqrt{5}}{2}\approx-0.618$$
 $$v_2 = 
-\begin{bmatrix}\frac{1-\sqrt{5}}{2}\\ 1
+\begin{bmatrix}
+\frac{1-\sqrt{5}}{2}\\ 1
 \end{bmatrix} 
 $$
 Notice that the eigenvalue of $\lambda_1$ is the golden ratio.
