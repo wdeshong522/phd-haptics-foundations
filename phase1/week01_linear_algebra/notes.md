@@ -114,17 +114,18 @@ F = \begin{bmatrix}
 \end{bmatrix} 
 $$
 
- The eigenvalues and eigenvectors are:
+The eigenvalues and eigenvectors are:
 $$
 \lambda_1=\frac{1+\sqrt{5}}{2} \approx 1.618 
 $$
+<!--
 $$
 v_1 = 
 \begin{bmatrix}
-\frac{1+\sqrt{5}}{2}\\ 1
+\frac{1+\sqrt{5}}{2}\\\\\\\\ 1
 \end{bmatrix} 
 $$
-<!--
+
 \lambda_2=\frac{1-\sqrt{5}}{2}\approx-0.618;\ v_2 = \begin{bmatrix}\frac{1-\sqrt{5}}{2}\\ 1
 \end{bmatrix} 
 \\
