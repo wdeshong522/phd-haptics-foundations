@@ -116,7 +116,7 @@ $$
 
 The eigenvalues and eigenvectors are:
 $$
-\lambda_1=\frac{1+\sqrt{5}}{2} \approx 1.618 
+\lambda_1=\frac{1+\sqrt{5}}{2} \approx 1.618
 $$
 <!--
 $$
