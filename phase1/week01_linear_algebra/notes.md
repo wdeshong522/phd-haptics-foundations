@@ -263,3 +263,19 @@ Long term behavior is a stable spiral to zero.
 | Shear (defective) | 1, 1 | =1 | Linear growth |
 | Scaled Rotation | ±0.5i | <1 | Stable spiral to 0 |
 
+
+### Probability Notes
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+$$ P(B|A) = \frac{P(A \cap B)}{P(A)} $$ 
+Rearrange P(A|B) to get: 
+$$ P(A \cap B) = P(A|B)P(B)$$ 
+Substitute into P(B|A) to get: 
+$$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
+
+For the white cane project, the bayes texture classifier can be written as: 
+$$P(Surface_i|Sensor)=\frac{P(Sensor|Surface_i)P(Surface_i)}{\sum_{j \in Surface\ Type} P(Sensor|Surface_j)P(Surface_j))}$$
+
+Two possible priors to be used for the classifier:
+
+$Informative\ Prior:P(Surface_i) \propto Surface\ Area\ Frequency$ - encodes real environment knowledge
+$Uniform\ prior: P(Surface_i) = 1/4$ - reduces classifier to maximum likelihood (assumes 4 surfaces)
