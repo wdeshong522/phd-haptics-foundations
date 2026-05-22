@@ -204,6 +204,7 @@ v_1 =
 $$
 
 The general solution is:
+
 $$
 u_k = (c_1 + c_2 k) \cdot \begin{bmatrix}
 1\\
@@ -247,12 +248,12 @@ $$
 u_k=c_1 \cdot (0.5i)^k \cdot \begin{bmatrix}
 i \\
 1
-\end{bmatrix} 
-+ c_2 \cdot (-0.5i)^k \cdot \begin{bmatrix}
+\end{bmatrix} + c_2 \cdot (-0.5i)^k \cdot \begin{bmatrix}
 1 \\
 i
 \end{bmatrix}
 $$
+
 Long term behavior is a stable spiral to zero.
 
 ### Summary of Examples
