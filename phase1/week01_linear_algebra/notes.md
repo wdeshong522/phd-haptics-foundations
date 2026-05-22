@@ -171,11 +171,11 @@ $$
 
 The general solution is:
 
-$$u_k=c_1 \cdot 2^k \cdot \begin{bmatrix}
+$$
+u_k=c_1 \cdot 2^k \cdot \begin{bmatrix}
 1 \\
 0
-\end{bmatrix} 
-+ c_2 \cdot \begin{bmatrix}
+\end{bmatrix} + c_2 \cdot \begin{bmatrix}
 0 \\
 1
 \end{bmatrix}
