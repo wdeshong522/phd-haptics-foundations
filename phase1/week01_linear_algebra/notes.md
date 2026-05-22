@@ -204,7 +204,12 @@ v_1 =
 $$
 
 The general solution is:
-$$u_k = (c_1 + c_2 k)\begin{bmatrix}1\\0\end{bmatrix}$$
+$$
+u_k = (c_1 + c_2 k) \cdot \begin{bmatrix}
+1\\
+0
+\end{bmatrix}
+$$
 
 Long term behavior is linear growth.
 
@@ -228,21 +233,26 @@ i\\
 \end{bmatrix} 
 $$
 
-$$v_2 = 
+$$
+v_2 = 
 \begin{bmatrix}
 1\\ 
 i
 \end{bmatrix} 
 $$
+
 The general solution is:
-$$u_k=c_1 \cdot (0.5i)^k \cdot \begin{bmatrix}
+
+$$
+u_k=c_1 \cdot (0.5i)^k \cdot \begin{bmatrix}
 i \\
 1
 \end{bmatrix} 
 + c_2 \cdot (-0.5i)^k \cdot \begin{bmatrix}
 1 \\
 i
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 Long term behavior is a stable spiral to zero.
 
 ### Summary of Examples
