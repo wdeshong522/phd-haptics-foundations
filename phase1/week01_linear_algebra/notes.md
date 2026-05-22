@@ -278,4 +278,5 @@ $$P(Surface_i|Sensor)=\frac{P(Sensor|Surface_i)P(Surface_i)}{\sum_{j \in Surface
 Two possible priors to be used for the classifier:
 
 $Informative\ Prior:P(Surface_i) \propto Surface\ Area\ Frequency$ - encodes real environment knowledge
+
 $Uniform\ prior: P(Surface_i) = 1/4$ - reduces classifier to maximum likelihood (assumes 4 surfaces)
