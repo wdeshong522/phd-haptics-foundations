@@ -178,7 +178,9 @@ $$u_k=c_1 \cdot 2^k \cdot \begin{bmatrix}
 + c_2 \cdot \begin{bmatrix}
 0 \\
 1
-\end{bmatrix}$$
+\end{bmatrix}
+$$
+
 Long term behavior is exponential growth.
 
 ### Example 2 - Shear
