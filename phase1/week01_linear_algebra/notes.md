@@ -161,13 +161,16 @@ v_1 =
 \end{bmatrix} 
 $$
 
-$$v_2 = 
+$$
+v_2 = 
 \begin{bmatrix}
-0\\ 
+0 \\ 
 1
 \end{bmatrix} 
 $$
+
 The general solution is:
+
 $$u_k=c_1 \cdot 2^k \cdot \begin{bmatrix}
 1 \\
 0
@@ -213,7 +216,7 @@ $$
 
 The eigenvalues and eigenvectors are:
 
-$$\lambda_{1}0.5i; \lambda_2=-0.5i$$
+$$\lambda_{1}=0.5i; \lambda_2=-0.5i$$
 
 $$
 v_1 = 
