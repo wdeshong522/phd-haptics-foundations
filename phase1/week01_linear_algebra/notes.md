@@ -273,6 +273,7 @@ Substitute into P(B|A) to get:
 $$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
 For the white cane project, the bayes texture classifier can be written as: 
+
 $$P(Surface_i|Sensor)=\frac{P(Sensor|Surface_i)P(Surface_i)}{\sum_{j \in Surface\ Type} P(Sensor|Surface_j)P(Surface_j))}$$
 
 Two possible priors to be used for the classifier:
