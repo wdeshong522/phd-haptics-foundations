@@ -484,4 +484,4 @@ $$P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) - P(A \cap C) - P(B \cap C
 
 The pattern is that the probabilities that have an odd number of events added and the probabilities with an even number of events are subtracted. 
 
-$$P(\bigcup_{i=1}^{n} A_i) = \sum_{i} P(A_i) - \sum_{i<j} P(A_i \cap A_j)$$
+$$P(\bigcup_{i=1}^{n} A_i) = \sum_{i} P(A_i) - \sum_{i \lt j} P(A_i \cap A_j)$$
