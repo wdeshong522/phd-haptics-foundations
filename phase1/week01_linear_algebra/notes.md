@@ -404,6 +404,7 @@ Autocorrelated simulation output produces artificially narrow CIs when the stand
 ## Week 1 Saturday Notes
 ### Block 1- Diagonalization from scratch
 Let P be defined by 
+
 $$
 P= 
 \begin{bmatrix} 
