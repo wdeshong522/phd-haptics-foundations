@@ -448,4 +448,4 @@ A^n = P \Lambda^n P^{-1}
 $$
 
 The visualization of the eigendecomposition can be seen in this image:
-![Unit Circle Transformation](phase1\week01_linear_algebra\figures\eigendecomp_viz.png)
+![Unit Circle Transformation](figures/eigendecomp_viz.png)
