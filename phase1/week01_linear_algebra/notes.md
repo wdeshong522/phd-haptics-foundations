@@ -400,3 +400,39 @@ if $|x(t)| \le M$ for all t, then $|y(t)| \le K$ for all t, where M and K are fi
 
 ### Law Ch.4.4-4.5 Estimation of Means, Variances, Correlations. CIs for correlated Outputs
 Autocorrelated simulation output produces artificially narrow CIs when the standard formula is applied naively. The effective sample size nₑff < n must be used to correct for autocorrelation.
+
+## Week 1 Saturday Notes
+### Block 1- Diagonalization from scratch
+Let P be defined by 
+$$P=\begin{bmatrix}\vec{v_1}\ \vec{v_2}\cdots\vec{v_n}\end{bmatrix}\ where\ \vec{v_k}\ is\ the\ kth\ eigenvector$$
+
+and $\Lambda$ is defined by the diagonal matrix of eigenvalues
+$$\Lambda=
+\begin{bmatrix}
+\lambda_{1} & 0 & \cdots & 0 \\
+0 & \lambda_{2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_{n}
+\end{bmatrix}
+$$
+
+To ensure that the correct $\lambda$ are being applied to correct eigenvalues the order of the matrix multiplication $P\Lambda$.
+$$
+AP = P \Lambda \\
+APP^{-1}=P \Lambda P^{-1} \\
+A = P \Lambda P^{-1}
+$$
+
+This formula makes it easy to calculate $A^n$ because now we can rely on the fact that $P$ and $P^{-1}$ become the identity matrix.
+
+$$
+A = P \Lambda P^{-1} \\
+A^2 =  P \Lambda P^{-1} P \Lambda P^{-1} \\
+A^2 = P \Lambda I \Lambda P^{-1} \\
+A^2 = P \Lambda^2 P^{-1}
+$$
+
+This pattern repeats for all powers to give the final formula of:
+$$
+A^n = P \Lambda^n P^{-1}
+$$

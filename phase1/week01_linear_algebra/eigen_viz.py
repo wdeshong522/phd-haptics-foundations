@@ -49,32 +49,3 @@ axs[0].set_title("Unit Circle (r=1)")
 axs[1].set_title("Transformed Unit Circle")
 #fig.tight_layout()
 plt.show()
-
-
-
-# # 1. Define a square matrix
-# A = np.array([[3, 1], [0, 2]])
-
-# # 2. Compute eigenvalues and eigenvectors
-# # Note: eigenvectors are returned as columns in the second array
-# evals, evecs = np.linalg.eig(A)
-# print(evals)
-# print(evecs)
-# # 3. Setup the plot
-# origin = np.array([[0, 0], [0, 0]]) # origin point for both vectors
-# plt.figure(figsize=(6, 6))
-
-# # 4. Plot eigenvectors using quiver
-# # evecs[:, 0] is the first eigenvector, evecs[:, 1] is the second
-# plt.quiver(*origin, evecs[0, :], evecs[1, :], color=['r', 'b'], 
-#            scale=5, label='Eigenvectors')
-
-# # Formatting the plot
-# plt.grid()
-# plt.axhline(0, color='black', lw=1)
-# plt.axvline(0, color='black', lw=1)
-# plt.xlim(-1, 1)
-# plt.ylim(-1, 1)
-# plt.legend(['Vector 1', 'Vector 2'])
-# plt.title("Eigenvectors Visualization")
-# plt.show()
