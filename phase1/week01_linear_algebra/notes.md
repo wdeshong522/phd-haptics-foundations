@@ -460,29 +460,27 @@ $$P(A^c \cap B) = P(B) - P(A \cap B)$$
 $$P(A \cup B) = P(A) - P(A \cap B) + P(B) - P(A \cap B) + P(A \cap B)$$
 $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
 
-$$
-P(A \cup B \cup C) = P(A \cap B^c \cap C^c) + P(A^c \cap B \cap C^c) + P(A^c \cap B^c \cap C) + \\
-P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
-P(A) = P(A \cap B^c \cap C^c) + P(A \cap B^c \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C) \\
-P(A \cap B^c \cap C^c) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
-P(B) = P(A^c \cap B \cap C^c) + P(A^c \cap B \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)\\
-P(A^c \cap B \cap C^c) = P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
-P(C) = P(A^c \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B^c \cap C) + P(A \cap B \cap C)\\
-P(A^C \cap B^c \cap C) = P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C)\\
-P(A \cap B) = P(A \cap B \cap C^c) + P(A \cap B \cap C) \\
-P(A \cap B \cap C^c) = P(A \cap B) - P(A \cap B \cap C) \\
-P(B \cap C) = P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
-P(A^c \cap B \cap C) = P(B \cap C) - P(A \cap B \cap C) \\
-P(A \cap C) = P(A \cap B^c \cap C) + P(A \cap B \cap C) \\
-P(A \cap B^c \cap C) = P(A \cap C) - P(A \cap B \cap C) \\ 
-P(A \cup B \cup C) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) +\\
-P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) + \\
-P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C) + \\
-P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
-P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A^c \cap B \cap C) - P(A \cap B^c \cap C)- P(A \cap B \cap C^c)-2P(A \cap B \cap C) \\
-P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) + P(A \cap B \cap C) - P(A \cap C) + P(A \cap B \cap C)- P(B \cap C) - P(A \cap B \cap C)-2P(A \cap B \cap C) \\
-P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)\\
-$$
+$$P(A \cup B \cup C) = P(A \cap B^c \cap C^c) + P(A^c \cap B \cap C^c) + P(A^c \cap B^c \cap C) + 
+P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C)$$
+$$P(A) = P(A \cap B^c \cap C^c) + P(A \cap B^c \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)$$
+$$P(A \cap B^c \cap C^c) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)$$
+$$P(B) = P(A^c \cap B \cap C^c) + P(A^c \cap B \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)$$
+$$P(A^c \cap B \cap C^c) = P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)$$
+$$P(C) = P(A^c \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B^c \cap C) + P(A \cap B \cap C)$$
+$$P(A^C \cap B^c \cap C) = P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C)$$
+$$P(A \cap B) = P(A \cap B \cap C^c) + P(A \cap B \cap C)$$
+$$P(A \cap B \cap C^c) = P(A \cap B) - P(A \cap B \cap C)$$
+$$P(B \cap C) = P(A^c \cap B \cap C) + P(A \cap B \cap C)$$
+$$P(A^c \cap B \cap C) = P(B \cap C) - P(A \cap B \cap C)$$
+$$P(A \cap C) = P(A \cap B^c \cap C) + P(A \cap B \cap C)$$
+$$P(A \cap B^c \cap C) = P(A \cap C) - P(A \cap B \cap C)$$ 
+$$P(A \cup B \cup C) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) +
+P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) + 
+P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C) + 
+P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C)$$
+$$P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A^c \cap B \cap C) - P(A \cap B^c \cap C)- P(A \cap B \cap C^c)-2P(A \cap B \cap C)$$ 
+$$P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) + P(A \cap B \cap C) - P(A \cap C) + P(A \cap B \cap C)- P(B \cap C) - P(A \cap B \cap C)-2P(A \cap B \cap C)$$
+$$P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$$
 
 The pattern is that the probabilities that have an odd number of events added and the probabilities with an even number of events are subtracted. 
 
