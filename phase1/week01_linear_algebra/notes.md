@@ -452,20 +452,18 @@ The visualization of the eigendecomposition can be seen in this image:
 
 ### Block 3- Inclusion/Exclusion Formula Derivation
 
-$$
-P(A \cup B) = P(A \cap B^c) + P(A^c \cap B) + P(A \cap B) \\
-P(A) = P(A \cap B^c) + P(A \cap B) \\
-P(A \cap B^c) = P(A) - P(A \cap B) \\
-P(B) = P(A^c \cap B) + P(A \cap B) \\
-P(A^c \cap B) = P(B) - P(A \cap B) \\
-P(A \cup B) = P(A) - P(A \cap B) + P(B) - P(A \cap B) + P(A \cap B) \\
-P(A \cup B) = P(A) + P(B) - P(A \cap B) 
-$$
+$$P(A \cup B) = P(A \cap B^c) + P(A^c \cap B) + P(A \cap B)$$
+$$P(A) = P(A \cap B^c) + P(A \cap B)$$
+$$P(A \cap B^c) = P(A) - P(A \cap B)$$
+$$P(B) = P(A^c \cap B) + P(A \cap B)$$
+$$P(A^c \cap B) = P(B) - P(A \cap B)$$
+$$P(A \cup B) = P(A) - P(A \cap B) + P(B) - P(A \cap B) + P(A \cap B)$$
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
 
 $$
-P(A \cup B \cup C) = P(A \cap B^c \cap C^c) + P(A^c \cap B \cap C^c) + P(A^c \cap B^c \cap C) +\\
-P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C)\\
-P(A) = P(A \cap B^c \cap C^c) + P(A \cap B^c \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)\\
+P(A \cup B \cup C) = P(A \cap B^c \cap C^c) + P(A^c \cap B \cap C^c) + P(A^c \cap B^c \cap C) + \\
+P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
+P(A) = P(A \cap B^c \cap C^c) + P(A \cap B^c \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C) \\
 P(A \cap B^c \cap C^c) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
 P(B) = P(A^c \cap B \cap C^c) + P(A^c \cap B \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)\\
 P(A^c \cap B \cap C^c) = P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
