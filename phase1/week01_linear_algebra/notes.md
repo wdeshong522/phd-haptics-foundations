@@ -446,3 +446,6 @@ This pattern repeats for all powers to give the final formula of:
 $$
 A^n = P \Lambda^n P^{-1}
 $$
+
+The visualization of the eigendecomposition can be seen in this image:
+![Unit Circle Transformation](\figures\eigendecomp_viz.png)

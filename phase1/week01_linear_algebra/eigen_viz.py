@@ -12,7 +12,7 @@ y = np.sin(angles)
 uc_matrix = np.array([x,y])
 
 # Transform Unit Circle
-A = np.array([[3,2],[2,3]])
+A = np.array([[3,1],[1,2]])
 
 new_UC = A @ uc_matrix
 
