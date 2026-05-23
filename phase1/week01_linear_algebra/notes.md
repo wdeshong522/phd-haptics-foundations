@@ -405,7 +405,7 @@ Autocorrelated simulation output produces artificially narrow CIs when the stand
 ### Block 1- Diagonalization from scratch
 Let P be defined by 
 $$
-P=\begin{bmatrix}\vec{v_1}\ \vec{v_2}\cdots\vec{v_n}\end{bmatrix}\ where\ \vec{v_k}\ is\ the\ kth\ eigenvector
+P= \begin{bmatrix} \vec{v_1}\ \vec{v_2} \cdots \vec{v_n} \end{bmatrix}\ where\ \vec{v_k}\ is\ the\ kth\ eigenvector
 $$
 
 and $\Lambda$ is defined by the diagonal matrix of eigenvalues
