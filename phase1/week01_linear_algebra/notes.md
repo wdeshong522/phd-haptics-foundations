@@ -397,3 +397,6 @@ if $|x(t)| \le M$ for all t, then $|y(t)| \le K$ for all t, where M and K are fi
 | Time-invariance | x(t-t0) -> y(t-t0) | Time scaling x(at) |
 | Causality | Output depends only on x(t), t <= t | Future input x(t+a) |
 | Stability (BIBO) | Bounded input -> bounded output | Division, exponential growth |
+
+### Law Ch.4.4-4.5 Estimation of Means, Variances, Correlations. CIs for correlated Outputs
+Autocorrelated simulation output produces artificially narrow CIs when the standard formula is applied naively. The effective sample size nₑff < n must be used to correct for autocorrelation.
