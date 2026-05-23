@@ -138,6 +138,7 @@ $$
 Notice that the eigenvalue of $\lambda_1$ is the golden ratio.
 
 ## Week1 Thursday Notes
+### Strang 5.3 Difference Equations and Powers $A^k$
 A stable discrete system must have $|\lambda|<1$ for all eigenvalues. In the white cane project, if this does not happen and the $|\lambda|\ge1$, then the haptic signal will grow without bound.
 
 Worked examples for difference equations:
@@ -281,3 +282,118 @@ Two possible priors to be used for the classifier:
 $Informative\ Prior:P(Surface_i) \propto Surface\ Area\ Frequency$ - encodes real environment knowledge
 
 $Uniform\ prior: P(Surface_i) = 1/4$ - reduces classifier to maximum likelihood (assumes 4 surfaces)
+
+## Week 1 Friday Notes
+### Strang 5.4 Differential Equations and $e^{At}$ 
+| System | Stable | Marginally Stable | Unstable |
+|---|---|---|---|
+| Discrete (A^k) | \|λ\| < 1 | \|λ\| = 1 | \|λ\| > 1 |
+| Continuous (e^At) | Re(λ) < 0 | Re(λ) = 0 | Re(λ) > 0 |
+
+The stability of a haptic spring wall is determined by the real parts of the eigenvalues, which come from the ODE and the physical parameters of the system (specifically damping).
+
+Hermitian: $A^H = A$ - complex conjugate appears in the symmetric position across the diagonal. Generalizes symmetric matrices.
+Unitary:  $U^HU = I$ - orthonormal columns in the complex sense. Generalizes orthogonal matrices.
+
+### Systems and Signals Classification
+#### Even and Odd Decomposition
+An even signal is defined by $x(t)=x(-t)$ and an odd signal is defined by $x(t)=-x(-t)$.
+
+Any arbitrary signal can be decomposed into an even and odd signal.
+
+$$x_e(t)=\frac{x(t)+x(-t)}{2}$$
+
+$$x_o(t)=\frac{x(t)-x(-t)}{2}$$
+
+$$x(t) = x_e(t) + x_o(t)$$
+
+#### Linearity
+Two conditions must be met:
+1. Additivity ($x(t_1+t_2)=x(t_1)+x(t_2)$)
+2. Homogeneity ($x(at)=ax(t)$)
+
+Combined the check is:
+
+$$T(ax_1 + bx_2) = aT(x_1) + bT(x_2)$$
+
+#### Example 1- $y(t) = x(t) + 1$
+
+$$y(t_1+t_2)=x(t_1+t_2)+1$$ 
+
+$$y(t_1)+y(t_2) = x(t_1)+1+x(t_2)+1=x(t_1+t_2)+2$$
+
+Not Additive. If it were additive, then those two equations would be equal to each other
+
+$$y(at)=x(at)+1=ax(t)+1$$
+
+$$ay(t)=a(x(t)+1)=ax(t)+a$$ 
+
+Again those two don't equal and so it doesn't have homogeneity
+
+#### Example 2 - $y(t)=3x(t)$
+
+$$y(t_1+t_2)=3x(t_1+t_2)$$ 
+$$y(t_1)+y(t_2) = 3x(t_1)+3x(t_2)=3x(t_1+t_2)$$
+
+These equal so they are linear.
+
+$$y(at) = 3x(at) = 3ax(t)$$
+$$ay(t)=a(3x(t))=3ax(t)$$ 
+
+These are also equal so it has homogeneity. This is linear.
+
+#### Example 3 - $y(t) = x^2(t)$
+$$y(t_1+t_2)=x(t_1+t_2)x(t_1+t_2)=x^2(t_1+t_2)$$ 
+$$y(t_1)+y(t_2)=x(t_1)x(t_1)+x(t_2)x(t_2)=x^2(t_1)+x^2(t_2)$$ 
+
+These are not equal to each other, so it is not additive and therefore not linear.
+
+The white cane classifier is not linear since energy and power calculations involve squaring operations.
+
+#### Time Invariance
+
+$If x(t)\rightarrow y(t), then x(t−t_0) \rightarrow y(t−t_0​)$
+#### Example 4 - $y(t)=3x(t)$
+1. Replace $x(t)$ with $x(t-t_0)$: $3x(t-t_0)$
+2. Take original input $y(t)=3x(t)$ and shift it by $t_0$: $y(t-t_0) = 3x(t-t_0)$
+They are equal, so it is Time-Invariant
+
+#### Example 5 - $y(t)=x(2t)$
+1. Replace $x(t)$ with $x(2(t-t_0)) = x(2t-2t_0)$
+2. Take original input $y(t)=x(2t)$ and shift it by $t_0$: $y(t-t_0) = x(2t-t_0)$
+These are not equal, so it is not time-invariant.
+
+#### Causality
+$y(t)$ depends only on $x(\tau)$ for $\tau \le t$
+
+$x(t - a)$ for $a > 0 \rightarrow$ past $\rightarrow$ causal
+
+$x(t) \rightarrow$ present $\rightarrow$ causal 
+
+$x(t + a)$ for $a > 0 \rightarrow$ future $rightarrow$ not causal
+
+#### Example 6
+
+$y(t) = x(t - 1)$ looks into the past, so it is causal.
+
+$y(t) = x(t + 1)$ looks into the future, so it is not causal.
+
+#### Stability
+BIBO stability- Bounded Input always produces a Bounded Output
+
+if $|x(t)| \le M$ for all t, then $|y(t)| \le K$ for all t, where M and K are finite constants
+#### Example 7 - Are these BIBO?
+1. $y(t) = 3x(t)$
+
+   -This is stable. If the input is bounded then the output is only 3 times larger than the bounded input.
+2. $y(t) = \frac{1}{x(t)}$
+
+   -This is unstable. If the input is extremely small or approaches zero, then the output explodes
+
+#### Summary on Classification
+| Property | Condition | Fails When |
+|---|---|---|
+| Linearity | T{ax1 + bx2} = aT{x1} + bT{x2} | Offset, squaring, any nonlinearity |
+| Time-invariance | x(t-t0) -> y(t-t0) | Time scaling x(at) |
+| Causality | Output depends only on x(t), t <= t | Future input x(t+a) |
+| Stability (BIBO) | Bounded input -> bounded output | Division, exponential growth |
