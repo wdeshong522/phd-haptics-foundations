@@ -485,3 +485,9 @@ $$P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) - P(A \cap C) - P(B \cap C
 The pattern is that the probabilities that have an odd number of events added and the probabilities with an even number of events are subtracted. 
 
 $$P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i}P(A_i) - \sum_{i \lt j}P(A_i \cap A_j) + \sum_{i \lt j \lt k}P(A_i \cap A_j \cap A_k) - \cdots + (-1)^{n+1}P\left(\bigcap_{i=1}^n A_i\right)$$
+
+## Paper Notes
+### Siira and Pai (1996) — Haptic Texturing: A Stochastic Approach
+This paper focuses on applying statistical noise on top of the existing normal and lateral forces of a surface to model "microsurface asperities". The Gaussian noise was modeled at the surface space level and transformed to the world space. The world space forces were further mapped to the joint space of the robot arm to produce real world forces that felt realistic.
+
+Key matrices used: rotation matrix R for surface-to-world transformation, covariance matrix $F\sigma^2$ for statistical force properties, and Jacobian $J^T$ for world-to-joint-space mapping, all following the linear transformation law $Y_{\sigma^2} = A(X_{\sigma^2})A^T$.
