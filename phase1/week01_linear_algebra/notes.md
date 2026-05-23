@@ -402,7 +402,7 @@ if $|x(t)| \le M$ for all t, then $|y(t)| \le K$ for all t, where M and K are fi
 Autocorrelated simulation output produces artificially narrow CIs when the standard formula is applied naively. The effective sample size nₑff < n must be used to correct for autocorrelation.
 
 ## Week 1 Saturday Notes
-### Block 1- Diagonalization from scratch
+### Block 1+2- Diagonalization from scratch, Eigendecomposition Visualization
 Let P be defined by 
 
 $$
@@ -449,3 +449,44 @@ $$
 
 The visualization of the eigendecomposition can be seen in this image:
 ![Unit Circle Transformation](figures/eigendecomp_viz.png)
+
+### Block 3- Inclusion/Exclusion Formula Derivation
+
+$$
+P(A \cup B) = P(A \cap B^c) + P(A^c \cap B) + P(A \cap B) \\
+P(A) = P(A \cap B^c) + P(A \cap B) \\
+P(A \cap B^c) = P(A) - P(A \cap B) \\
+P(B) = P(A^c \cap B) + P(A \cap B) \\
+P(A^c \cap B) = P(B) - P(A \cap B) \\
+P(A \cup B) = P(A) - P(A \cap B) + P(B) - P(A \cap B) + P(A \cap B) \\
+P(A \cup B) = P(A) + P(B) - P(A \cap B) 
+$$
+
+$$
+P(A \cup B \cup C) = P(A \cap B^c \cap C^c) + P(A^c \cap B \cap C^c) + P(A^c \cap B^c \cap C) +\\
+P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C)\\
+P(A) = P(A \cap B^c \cap C^c) + P(A \cap B^c \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)\\
+P(A \cap B^c \cap C^c) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
+P(B) = P(A^c \cap B \cap C^c) + P(A^c \cap B \cap C) + P(A \cap B \cap C^c) + P(A \cap B \cap C)\\
+P(A^c \cap B \cap C^c) = P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C)\\
+P(C) = P(A^c \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B^c \cap C) + P(A \cap B \cap C)\\
+P(A^C \cap B^c \cap C) = P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C)\\
+P(A \cap B) = P(A \cap B \cap C^c) + P(A \cap B \cap C) \\
+P(A \cap B \cap C^c) = P(A \cap B) - P(A \cap B \cap C) \\
+P(B \cap C) = P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
+P(A^c \cap B \cap C) = P(B \cap C) - P(A \cap B \cap C) \\
+P(A \cap C) = P(A \cap B^c \cap C) + P(A \cap B \cap C) \\
+P(A \cap B^c \cap C) = P(A \cap C) - P(A \cap B \cap C) \\ 
+P(A \cup B \cup C) = P(A) - P(A \cap B^c \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) +\\
+P(B) - P(A^c \cap B \cap C) - P(A \cap B \cap C^c) - P(A \cap B \cap C) + \\
+P(C) - P(A^c \cap B \cap C) - P(A \cap B^c \cap C) - P(A \cap B \cap C) + \\
+P(A \cap B \cap C^c) + P(A \cap B^c \cap C) + P(A^c \cap B \cap C) + P(A \cap B \cap C) \\
+P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A^c \cap B \cap C) - P(A \cap B^c \cap C)- P(A \cap B \cap C^c)-2P(A \cap B \cap C) \\
+P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) + P(A \cap B \cap C) - P(A \cap C) + P(A \cap B \cap C)- P(B \cap C) - P(A \cap B \cap C)-2P(A \cap B \cap C) \\
+P(A \cup B \cup C) = P(A) + P(B) + P(C)-P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)\\
+$$
+
+The pattern is that the probabilities that have an odd number of events added and the probabilities with an even number of events are subtracted. 
+
+$$P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i}P(A_i) - \sum_{i<j}P(A_i \cap A_j) + \sum_{i<j<k}P(A_i \cap A_j \cap A_k) - \cdots + (-1)^{n+1}P\left(\bigcap_{i=1}^n A_i\right)$$
+
