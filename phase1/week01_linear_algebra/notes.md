@@ -491,3 +491,11 @@ $$P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i}P(A_i) - \sum_{i \lt j}P(A_i \cap 
 This paper focuses on applying statistical noise on top of the existing normal and lateral forces of a surface to model "microsurface asperities". The Gaussian noise was modeled at the surface space level and transformed to the world space. The world space forces were further mapped to the joint space of the robot arm to produce real world forces that felt realistic.
 
 Key matrices used: rotation matrix R for surface-to-world transformation, covariance matrix $F\sigma^2$ for statistical force properties, and Jacobian $J^T$ for world-to-joint-space mapping, all following the linear transformation law $Y_{\sigma^2} = A(X_{\sigma^2})A^T$.
+
+## Week 1 Sunday Notes
+### Extended Bridge
+The eigendecomposition of the covariance matrix of the three sensors (tip, midpoint handle) could increase the amount of information available from the vibration measurement. The dominant eigenvector, the one that captures the most variance, helps explain the amplitude of the vibration from the surface roughness. The second eigenvector will likely capture the cross-sensor relationship and help explain how vibration travels through the cane. In the MSIM 510 class project, each sensor was treated as an independent source, and only the handle was used to classify vibrations. If we use eigendecomposition, then we can capture the same information as the MSIM 510 paper, but also add information about how energy attenuates from tip to midpoint to handle. This is actually more useful in the long run because the eigenvectors tell you which sensor locations contribute most independently to surface discrimination, which directly informs actuator placement for maximum perceptual effect for the haptic white cane prototype.
+
+## Week 2 Preview Question
+SVD works on any matrix regardless of shape — how does SVD of the 
+raw data matrix differ from eigendecomposition of the covariance matrix?
