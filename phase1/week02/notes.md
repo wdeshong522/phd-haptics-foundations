@@ -211,9 +211,13 @@ This means the system is not Linear-Time Invariant (LTI).
 - Created a Rank-K Approximation via Slicing
   - Only need the top K eigenvalues and eigenvectors of $U,\Sigma,V^T$
   - Error is calculated using Frobenius Norm: 
+   
    $$||A-A_{Approx}|| = \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}-b_{ij}|^2}$$
+
   - Percent Explained uses the Eigvalue matrix:
+   
    $$PctExp = \frac{\sum_{i=1}^{k}\sigma_{i}^{2}}{\sum_{i=1}^{n}\sigma_{i}^{2}}$$
+   
 - Plotted Error and Percent Explained vs k
 ![SVD Visualization](figures/rank_k_approximation.png)
 - Identified thresholds at which XX% of variance explained
