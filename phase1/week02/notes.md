@@ -278,3 +278,125 @@ A = U \Sigma V^T =\begin{bmatrix}
 \end{bmatrix}
 $$
 
+## Week 2 Wednesday 
+### Block 1: Positive Definite Matrices (Strang §6.2)
+
+### Definition
+
+A symmetric matrix **A** is **positive definite** if for every nonzero vector **x**:
+
+$$
+x^T A x > 0
+$$
+
+Geometrically, this defines a bowl shape — the quadratic form is always positive regardless of direction. In haptics, the stiffness matrix **K** must be positive definite so that potential energy $U = \frac{1}{2} x^TKx$ is always positive (physically stable system).
+
+---
+
+### Three Equivalent Tests
+
+All three tests are equivalent — a matrix passes all three or none.
+
+#### Test 1: All Eigenvalues Positive
+
+If **Av = λv**, substituting **x = v** into the definition gives:
+
+$$
+v^T A v = \lambda v^T v = \lambda \|v\|^2
+$$
+
+Since $‖v‖^2 > 0$ always, the sign depends entirely on λ. Therefore all eigenvalues must be positive.
+
+#### Test 2: All Pivots Positive
+
+Pivots are the leading diagonal entries produced during Gaussian elimination. All pivots must be positive.
+
+#### Test 3: All Upper-Left Determinants Positive
+
+For an n×n matrix, all k×k upper-left submatrix determinants (k = 1, 2, ..., n) must be positive.
+
+**Key relationship:** det(A) = product of eigenvalues = product of pivots
+
+---
+
+### Examples
+
+**Positive definite** — all three tests pass:
+
+$$
+A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}
+$$
+
+- Pivots: 4, 2 
+- Eigenvalues: $\frac{7 \pm \sqrt{17}}{2} \approx 5.56, 1.44$ 
+- Determinants: 4, 8 
+
+**Not positive definite** — fails Test 3:
+
+$$
+A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}
+$$
+
+- det(A) = -3 < 0 $\rightarrow$ one positive, one negative eigenvalue $\rightarrow$ **indefinite** (saddle shape)
+
+**3×3 positive definite** (tridiagonal spring stiffness matrix):
+
+$$
+A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}
+$$
+
+- Upper-left determinants: 2, 3, 4 — all positive
+- This is the stiffness matrix for a chain of 3 springs — positive definite confirms stable energy storage.
+
+### Cholesky Decomposition
+
+### Key Idea
+
+Cholesky is LU decomposition exploiting symmetry. For a symmetric positive definite matrix:
+
+```math
+A = LL^T
+```
+
+where **L** is lower triangular with positive diagonal entries.
+
+---
+
+### Derivation from LU
+
+Standard LU gives $A = LU$. For symmetric positive definite A, this can be written as:
+
+$$
+A = LDL^T
+$$
+
+where **D** is diagonal with the pivots on the diagonal. Since positive definiteness guarantees all pivots are positive, we can take their square roots:
+
+$$
+\tilde{L} = L\sqrt{D} \implies A = \tilde{L}\tilde{L}^T
+$$
+
+**Why positive definiteness is required:** if any pivot were negative, $\sqrt{D}$ would produce imaginary entries — Cholesky only exists for positive definite matrices.
+
+---
+
+### Manual Derivation (2×2 Example)
+
+Solve for L entry by entry by expanding $A = LLᵀ$:
+
+$$
+\begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix} = \begin{bmatrix} l_{11} & 0 \\ l_{21} & l_{22} \end{bmatrix} \begin{bmatrix} l_{11} & l_{21} \\ 0 & l_{22} \end{bmatrix}
+$$
+
+Matching entries:
+- Top-left: $l_{11}^2 = 4 \rightarrow l_{11} = 2$
+- Bottom-left: $l_{21} · l_{11} = 2` \rightarrow l_{21} = 2/2 = 1$
+- Bottom-right: $l_{21}^2 + l_{22}^2 = 3 \rightarrow l_{22} = \sqrt{2} \approx 1.414$
+
+Result:
+
+$$
+L = \begin{bmatrix} 2 & 0 \\ 1 & \sqrt{2} \end{bmatrix}
+$$
+
+Note: diagonal entries of L are $\sqrt{(pivots)}$ — confirming the $LDL^T$ connection.
