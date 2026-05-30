@@ -324,7 +324,11 @@ For an n×n matrix, all k×k upper-left submatrix determinants (k = 1, 2, ..., n
 **Positive definite** — all three tests pass:
 
 $$
-A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}
+A = 
+\begin{bmatrix} 
+4 & 2 \\
+2 & 3 
+\end{bmatrix}
 $$
 
 - Pivots: 4, 2 
@@ -334,7 +338,11 @@ $$
 **Not positive definite** — fails Test 3:
 
 $$
-A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}
+A = 
+\begin{bmatrix} 
+1 & 2 \\
+2 & 1 
+\end{bmatrix}
 $$
 
 - det(A) = -3 < 0 $\rightarrow$ one positive, one negative eigenvalue $\rightarrow$ **indefinite** (saddle shape)
@@ -342,7 +350,12 @@ $$
 **3×3 positive definite** (tridiagonal spring stiffness matrix):
 
 $$
-A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}
+A = 
+\begin{bmatrix} 
+2 & -1 & 0 \\
+-1 & 2 & -1 \\ 
+0 & -1 & 2 
+\end{bmatrix}
 $$
 
 - Upper-left determinants: 2, 3, 4 — all positive
@@ -354,9 +367,9 @@ $$
 
 Cholesky is LU decomposition exploiting symmetry. For a symmetric positive definite matrix:
 
-```math
+$$
 A = LL^T
-```
+$$
 
 where **L** is lower triangular with positive diagonal entries.
 
@@ -385,7 +398,18 @@ $$
 Solve for L entry by entry by expanding $A = LLᵀ$:
 
 $$
-\begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix} = \begin{bmatrix} l_{11} & 0 \\ l_{21} & l_{22} \end{bmatrix} \begin{bmatrix} l_{11} & l_{21} \\ 0 & l_{22} \end{bmatrix}
+\begin{bmatrix} 
+4 & 2 \\ 
+2 & 3 
+\end{bmatrix} = 
+\begin{bmatrix} 
+l_{11} & 0 \\ 
+l_{21} & l_{22} 
+\end{bmatrix} 
+\begin{bmatrix} 
+l_{11} & l_{21} \\ 
+0 & l_{22} 
+\end{bmatrix}
 $$
 
 Matching entries:
@@ -396,7 +420,11 @@ Matching entries:
 Result:
 
 $$
-L = \begin{bmatrix} 2 & 0 \\ 1 & \sqrt{2} \end{bmatrix}
+L = 
+\begin{bmatrix} 
+2 & 0 \\ 
+1 & \sqrt{2} 
+\end{bmatrix}
 $$
 
 Note: diagonal entries of L are $\sqrt{(pivots)}$ — confirming the $LDL^T$ connection.
