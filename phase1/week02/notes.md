@@ -214,11 +214,67 @@ This means the system is not Linear-Time Invariant (LTI).
    
    $$||A-A_{Approx}|| = \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}-b_{ij}|^2}$$
 
-  - Percent Explained uses the Eigvalue matrix:
+  - Percent Explained uses the singular values from the $\Sigma$ Eigenvalue matrix:
    
    $$PctExp = \frac{\sum_{i=1}^{k}\sigma_{i}^{2}}{\sum_{i=1}^{n}\sigma_{i}^{2}}$$
-   
+
 - Plotted Error and Percent Explained vs k
 ![SVD Visualization](figures/rank_k_approximation.png)
 - Identified thresholds at which XX% of variance explained
+
+### SVD Examples
+#### Example 1
+
+$$
+A=\begin{bmatrix}
+2 & 4 \\
+1 & 2
+\end{bmatrix}
+$$
+
+$$
+AA^T=\begin{bmatrix}
+20 & 10 \\
+10 & 5
+\end{bmatrix}
+$$
+
+$$\lambda_1 = 25, \lambda_2=0$$
+
+$$
+U=\begin{bmatrix}
+\frac{2}{\sqrt{5}} & \frac{-1}{\sqrt{5}} \\
+\frac{1}{\sqrt{5}} & \frac{2}{\sqrt{5}}
+\end{bmatrix}
+$$
+
+$$
+A^TA=\begin{bmatrix}
+5 & 10 \\
+10 & 20
+\end{bmatrix}
+$$
+
+$$\lambda_1 = 25, \lambda_2=0$$
+
+$$
+V=\begin{bmatrix}
+\frac{1}{\sqrt{5}} & \frac{-2}{\sqrt{5}} \\
+\frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}}
+\end{bmatrix}
+$$
+
+$$
+\Sigma =\begin{bmatrix}
+5 & 0 \\
+0 & 0
+\end{bmatrix}
+$$
+
+$$
+A = U \Sigma V^T =\begin{bmatrix}
+2 & 4 \\
+1 & 2
+\end{bmatrix}
+$$
 

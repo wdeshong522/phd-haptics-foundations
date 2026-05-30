@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-A = np.array([[3,1],
-             [2,4]])
+A = np.array([[2,4],
+             [1,2]])
 
 U, s, Vt = np.linalg.svd(A)
 
