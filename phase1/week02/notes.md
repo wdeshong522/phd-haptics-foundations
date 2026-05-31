@@ -500,3 +500,183 @@ where $h_1[n]$ is the Butterworth filter, $h_2[n]$ is the RMS envelope, and h[n]
 
 **Note:** Not all distributions have all three parameter types. The Gaussian has only location and scale — its shape is fixed. Distributions requiring a GMM indicate that a single location-scale family has insufficient shape flexibility to capture multimodal behavior.
 
+## Week 2 Thursday 
+
+### Pseudoinverse and Least Squares (Strang §6.3)
+
+#### Pseudoinverse Definition
+
+For any matrix $A = U\SigmaV^T, the pseudoinverse is:
+
+$$
+A^+ = V\Sigma^+ U^T
+$$
+
+where $\Sigma^+$ is formed by replacing each nonzero singular value with its reciprocal, then transposing:
+
+$$
+\Sigma = 
+\begin{bmatrix} 
+5 & 0 \\ 
+0 & 2 \\ 
+0 & 0 
+\end{bmatrix} \implies 
+\Sigma^+ = 
+\begin{bmatrix} 
+1/5 & 0 & 0 \\ 
+0 & 1/2 & 0 
+\end{bmatrix}
+$$
+
+If A is m×n then $A^+$ is n×m.
+
+---
+
+#### Least Squares — Two Equivalent Methods
+
+For an overdetermined system Ax = b (m > n, no exact solution), minimize $‖Ax - b‖^2$:
+
+**Method 1 — Normal Equations:**
+
+$$
+A^T A \hat{x} = A^T b \implies \hat{x} = (A^T A)^{-1} A^T b
+$$
+
+**Method 2 — Pseudoinverse:**
+
+$$
+\hat{x} = A^+ b
+$$
+
+Both give the same result when A has full column rank.
+
+---
+
+#### Numerical Warning — Small Singular Values
+
+If a singular value is very small (e.g. 1e-10) but not exactly zero, taking its reciprocal inflates it to 1e10 — massively amplifying noise in that direction.
+
+**Fix — Truncated SVD:** set a threshold ε and treat any $\sigma_i < \epsilon$ as zero. `np.linalg.pinv` does this automatically.
+
+This is the same decision as rank-k approximation — choosing which singular values to keep vs discard.
+
+---
+#### White Cane Connection
+
+The white cane data matrix is overdetermined — many more time samples than axes. Fitting a model to this data is implicitly a least-squares problem. The pseudoinverse makes this well-posed even when no exact solution exists.
+
+---
+### Density and Mass Functions (C&B §1.6)
+#### Discrete Random Variables
+1. $p(x) \ge 0$ for all x
+2. $\sum_x p(x) = 1$ for PMF, $\int_{-\infty}^{\infty} p(x) = 1$  for pdf
+
+#### Bernoulli:
+Models a single trial with probability p of success:
+
+$$p(x)= p^x (1-p)^{1-x},\ x \in \{0,1\}$$
+
+#### Binomial:
+Models k successes in n independent Bernoulli trials:
+$$p(x)= {n\choose x} p^x (1-p)^{n-x},\ x \in \{0,1,...,n\}$$
+
+**Derivation:** two components multiply together:
+- **Probability of one specific sequence** with k successes: $p^k(1-p)^{n-k}$
+- **Number of such sequences** — choosing which k of n positions get a success: $\binom{n}
+{k} = \frac{n!}{k!(n-k)!}$
+
+Divide by k! because success positions are interchangeable; divide by (n-k)! because failure positions are interchangeable.
+
+---
+
+#### PDF — Continuous Random Variables
+
+Must satisfy:
+1. f(x) ≥ 0 for all x
+2. ∫f(x)dx = 1
+
+#### Uniform PDF on [a, b]
+
+Constant density over the interval — all values equally likely:
+
+$$
+f(x) = \frac{1}{b-a}, \quad x \in [a, b]
+$$
+
+#### Exponential PDF
+
+Models time between events in a Poisson process. Parameter λ > 0:
+
+$$
+f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+$$
+
+**Verification:**
+- Non-negative: λ > 0 and $e^{-λx} > 0$ for all x ≥ 0 
+- Integrates to 1 
+
+$$
+F(x)=\int_{0}^{\infty} \lambda e^{-\lambda x} dx \\
+u = -\lambda x, du=-\lambda dx \\
+F(x) = -\int_{0}^{-\infty}  e^{u} du \\
+F(x) = -e^{-\infty}+e^{0} = 1
+$$
+
+**Memoryless property:** P(X > s+t | X > s) = P(X > t) — the probability of leaving a state does not depend on how long you've already been there.
+
+---
+
+### White Cane Connection
+
+The white cane Markov chain makes a transition decision at every frame update independently of past dwell time — this is precisely the memoryless property. If extended to a continuous-time Markov chain, the Exponential would be the natural dwell time distribution with λ = 1/mean_dwell_time estimated from empirical data.
+
+---
+### Bridge
+The white cane surface classifier can be defined by P(surface=k|x). If it is confident then P(surface=k|x) would have a dominant higher probability for one surface and lower probabilities for the other surfaces. For example, in trying to distinguish grass vs a rug, those probabilities might be something like P(Concrete|x) = 0.9, P(Rug|x)=0.01, P(Grass|x)=0.01, P(Tactile Pavement|x) = 0.08. If it were not confident, then it would have the most likely surfaces having similar probabilities. For example, in trying to distinguish grass vs a rug, those probabilities might be something like P(Grass|x) = 0.45, P(Rug|x)=0.46, P(Concrete|x)=0.05, P(Tactile Pavement|x) = 0.04.
+
+In a scenario where the classifier is uncertain, it must decide what surface if should classify. 
+
+
+---
+
+### Block 4B: Angel Ch.1 Synthesis — Graphics Pipeline
+
+#### Complete Rendering Pipeline
+
+| Stage | Runs On | Input | Output |
+|---|---|---|---|
+| Application | CPU | Scene description, geometry, transformations | Vertex data sent to GPU |
+| Geometry | GPU | Vertices | Projected, clipped primitives |
+| Rasterization | GPU | Primitives | Pixels written to framebuffer |
+
+
+#### Stage Details
+
+**Application Stage (CPU)**
+- Define vertices that make up 3D geometry
+- Apply transformations (move, rotate, scale objects)
+- Set up lighting, textures, materials
+- Send processed data to GPU
+
+**Geometry Stage (GPU)**
+- Process vertices through transformation pipeline
+- Apply projection — map 3D world to 2D projection plane
+- **Clipping** — remove primitives that fall outside the view volume (no point rasterizing what the viewer cannot see)
+
+**Rasterization Stage (GPU)**
+- Convert projected geometric primitives to discrete pixels
+- Write pixel values to the **framebuffer**
+- Framebuffer output sent to display
+
+
+#### Synthetic Camera Model
+
+- Virtual objects exist in world space independently of the viewer
+- The camera defines what gets seen — moving the camera does not touch the geometry
+- The clipping rectangle is the digital equivalent of a physical camera's film frame
+- Only geometry within the view volume reaches rasterization
+
+#### Key Facts
+- The entire pipeline can now run on the GPU (programmable shader pipeline)
+- CPU/GPU boundary: application stage on CPU, everything after on GPU
+- Framebuffer sits at the end of rasterization — stores final pixel values before display
