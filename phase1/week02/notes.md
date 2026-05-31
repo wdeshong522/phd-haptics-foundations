@@ -428,3 +428,75 @@ L =
 $$
 
 Note: diagonal entries of L are $\sqrt{(pivots)}$ — confirming the $LDL^T$ connection.
+
+### White cane Bridge
+If we wanted to simulate synthetic data for the white cane vibration then the Cholesky decomposition would be needed to preserve the relationship between sensors. Additionally multi-point haptic actuators will need to know this information as well. The main limitation with using this approach is that we need to stick with actuators located at the same places as the sensor. On the haptic cane, that is unrealistic. A more flexible approach would need to use a spatial covariance model rather than a fixed empirical covariance model.
+
+
+### LTI Systems and Convolution (Oppenheim §2.3–2.4)
+#### Core Result — The Convolution Sum
+
+If you know a system's impulse response h[n], the output for any input x[n] is:
+
+$$
+y[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n-k]
+$$
+
+**Why h[n] is sufficient:** any input can be written as a sum of scaled and shifted impulses:
+
+$$
+x[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot \delta[n-k]
+$$
+
+By linearity, each impulse produces a scaled shifted version of h[n]. By time-invariance, a shifted input produces the same shifted output. Superposition gives the convolution sum.
+
+---
+
+#### Causality and BIBO Stability
+
+**Causality:** h[n] = 0 for n < 0 — output depends only on present and past inputs.
+
+**BIBO Stability:**
+
+$$
+\sum_{n=-\infty}^{\infty} |h[n]| < \infty
+$$
+
+Example: $h = [1, 0, -1] \rightarrow \sum{|h[n]|} = 1 + 0 + 1 = 2 < \infty \rightarrow$ stable and causal.
+
+---
+
+#### Convolution Properties and System Interconnections
+
+| Property | Formula | System Interpretation |
+|---|---|---|
+| Commutativity | x[n] * h[n] = h[n] * x[n] | Input and impulse response are interchangeable |
+| Associativity | (x * $h_1$) * $h_2$ = x * ($h_1$ * $h_2$) | Cascade systems $\rightarrow$ single system with $h_1[n]$ * $h_2[n]$ |
+| Distributivity | x * ($h_1[n]$ + $h_2[n]$) = x*$h_1[n]$ + x*$h_2[n]$ | Parallel systems $\rightarrow$ single system with h₁[n] + h₂[n] |
+
+**Key results:**
+- Cascade: order does not matter (commutativity)
+- Parallel: impulse responses add
+- Both: can always be reduced to a single equivalent system
+---
+
+#### White Cane Connection
+
+The MSIM 510 signal processing pipeline (Butterworth filter $\rightarrow$ RMS envelope) is a cascade of two LTI systems. By associativity:
+
+$$
+y[n] = x[n] * (h_1[n] * h_2[n]) = x[n] * h[n]
+$$
+
+where $h_1[n]$ is the Butterworth filter, $h_2[n]$ is the RMS envelope, and h[n] is the entire pipeline as a single equivalent system.
+
+---
+
+### Distribution Parameter Types (Law §6.2.1)
+
+- **Location** — shifts the distribution along the x-axis without changing its shape or spread (e.g. μ in Gaussian)
+- **Scale** — stretches or compresses the spread of the distribution (e.g. σ in Gaussian)
+- **Shape** — controls the form of the distribution: skewness, tail heaviness, modality (e.g. k in Gamma, α in Beta)
+
+**Note:** Not all distributions have all three parameter types. The Gaussian has only location and scale — its shape is fixed. Distributions requiring a GMM indicate that a single location-scale family has insufficient shape flexibility to capture multimodal behavior.
+
