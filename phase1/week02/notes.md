@@ -680,3 +680,166 @@ In a scenario where the classifier is uncertain, it must decide what surface if 
 - The entire pipeline can now run on the GPU (programmable shader pipeline)
 - CPU/GPU boundary: application stage on CPU, everything after on GPU
 - Framebuffer sits at the end of rasterization — stores final pixel values before display
+
+## Week 2 Friday Notes 
+### Rayleigh Quotient and Minimum Principles (Strang §6.4)
+
+#### Rayleigh Quotient Definition
+
+For a symmetric matrix A and nonzero vector x:
+
+$$
+R(x) = \frac{x^T A x}{x^T x}
+$$
+
+The denominator $x^Tx$ normalizes the quadratic form so R(x) is scale-invariant.
+
+---
+
+#### Key Result — Eigenvalue Bounds
+
+$$
+\lambda_{min} \leq R(x) \leq \lambda_{max}
+$$
+
+- **Minimum** achieved when x = first eigenvector (corresponding to $\lambda_{min}$)
+- **Maximum** achieved when x = last eigenvector (corresponding to $\lambda_{max}$)
+
+**Practical value:** find extreme eigenvalues by optimizing R(x) rather than solving the characteristic polynomial — far more efficient for large matrices.
+
+---
+
+#### Generalized Rayleigh Quotient
+
+For the generalized eigenvalue problem $Ax = B \lambda x$:
+
+$$
+R(x) = \frac{x^T A x}{x^T B x}
+$$
+
+In structural mechanics and haptics: A = K (stiffness), B = M (mass):
+
+$$
+R(x) = \frac{x^T K x}{x^T M x}
+$$
+
+Minimum gives $\omega_{min}^2$ — the lowest resonant frequency of the system. The direction that minimizes R(x) is the mode easiest to excite.
+
+---
+
+#### Haptic Applications
+
+**Spring wall stiffness:**
+- Potential energy of displacement x: $U = \frac{1}{2} x^TKx$
+- Minimum stiffness in any direction = $\lambda_{min}$ of K, achieved along first eigenvector
+- If $\lambda_{min} \rightarrow 0$: wall becomes transparent in that direction — no force feedback
+
+**Positive definiteness guarantee:**
+- K positive definite $\rightarrow$ all eigenvalues positive $\rightarrow$ $\lambda_{min} > 0$
+- Guarantees nonzero stiffness in every direction
+- Mathematical guarantee that the haptic wall always pushes back
+
+**Dental sim implication:**
+- If $\lambda_{min}$ of K is too small, students can push through the wall without feeling appropriate resistance
+- Positive definite K is a safety requirement, not just a mathematical convenience
+
+**Haptic rendering loop:**
+- The direction minimizing the generalized Rayleigh quotient resonates at the lowest frequency
+- This direction requires the most careful stability management in the rendering loop
+
+### Complex Matrices and Similarity Transformations (Strang §5.5–5.6)
+
+#### Hermitian Matrices — $A =A^H$ 
+
+The conjugate transpose $A^H$ replaces every entry $a_{ij}$ with its complex conjugate $\bar{a}_{ji}$. Hermitian is the complex generalization of symmetric.
+
+**Key result: all eigenvalues are real.**
+
+**Why $x^TAx$ matters:** for any input direction x, $x^TAx$ measures the "response" of the system A in that direction. For a stiffness matrix K, $U = \frac{1}{2}x^TKx$ is the potential energy stored when pushing in direction x. $x^TAx$ captures all possible input directions at once — not just eigenvectors.
+
+For Hermitian A, %v^HAv$ equals its own complex conjugate $\rightarrow$ must be real $\rightarrow$ eigenvalues are real. Hermitian matrices represent physical observables that must produce real measurements.
+
+**Practical rule:** Hermitian matrices behave like symmetric matrices — real eigenvalues, orthogonal eigenvectors — just extended to complex entries.
+
+---
+
+#### Unitary Matrices — $Q^H = Q^{-1}$
+
+The complex generalization of orthogonal matrices. Columns are orthonormal in the complex sense.
+
+**Key result: all eigenvalues lie on the unit circle.**
+
+$$
+|\lambda| = 1 \implies \lambda = e^{j\theta}
+$$
+
+**Why this matters:**
+- Unitary transformations are pure rotations — magnitude of any vector is preserved
+- $│\lambda│< 1$ $\rightarrow$ system decays. $│\lambda│> 1$ $\rightarrow$ system grows. $│\lambda│= 1$ $\rightarrow$ energy preserved
+- The **DFT matrix is unitary** $\rightarrow$ FFT preserves signal energy (Parseval's theorem)
+- Applying a unitary matrix repeatedly never causes growth or decay
+
+---
+
+#### Similarity Transformations
+
+Two matrices A and B are **similar** if:
+
+$$
+B = M^{-1}AM
+$$
+
+**Key result: similar matrices have the same eigenvalues.**
+
+All decompositions studied this week are similarity transformations in disguise:
+
+| Decomposition | Similarity Transform M | Result |
+|---|---|---|
+| Diagonalization $A = PDP^{-1}$ | P (eigenvectors) | D diagonal |
+| SVD $A = U\Sigma V^T$ | U, V orthogonal | $\Sigma$ diagonal |
+| Cholesky $A = LL^T$ | L lower triangular | triangular form |
+
+**For Hermitian matrices:** the similarity transform is always unitary ($Q^{-1} = Q^H$) — orthonormal eigenvectors, best numerical stability.
+
+**Motivation:** finding a similarity transform that diagonalizes or triangularizes A makes eigenvalue computation trivial. The quality of the transform determines numerical stability.
+
+---
+
+#### DSP Connection
+
+The complex exponential eʲωn has magnitude 1 — it sits exactly on the unit circle. This is precisely why it is the natural input for LTI systems (Block 3 today) and why the DFT — built from unitary transformations — is energy-preserving.
+
+---
+### Block 4A: Continuous Distribution Reference Card (Law §6.2.2)
+
+### Distribution Families
+
+| Distribution | Parameters | Support | When to Use |
+|---|---|---|---|
+| Uniform | a (min), b (max) | [a, b] | Equal likelihood across range; baseline/default |
+| Exponential | $\beta$ (scale) | $[0, \infty)$ | Time between events; memoryless dwell times |
+| Erlang | m (integer shape), $\beta$ (scale) | $[0, \infty)$ | Sum of m Exponentials; sequential waiting stages |
+| Gamma | $\alpha$ (shape), $\beta$ (scale) | $[0, \infty)$ | Generalization of Exponential; flexible positive RV |
+| Weibull | $\alpha$ (scale), $\beta$ (shape) | $[0, \infty)$ | Reliability and lifetime modeling; variable hazard rate |
+| Normal | $\mu$ (location), $\sigma^2$ (scale) | $(-\infty, \infty)$ | Central limit theorem; symmetric measurement error |
+| Lognormal | $\mu$, $\sigma^2$ (of ln(X)) | $(0, \infty)$ | Positive, right-skewed quantities (amplitudes, lifetimes) |
+| Beta |  $\alpha,\beta$ (both shape) | [0, 1] | Probabilities, proportions, bounded quantities |
+| Triangular | a (min), b (max), c (mode) | [a, b] | No data available; expert provides min/max/most likely |
+
+---
+
+### Key Relationships
+
+- **Erlang** = Gamma(m, $\beta$) where m is a positive integer
+- **Exponential** = Gamma(1, $\beta$) = Erlang(1, $\beta$)
+- **Lognormal**: if X ~ Lognormal then ln(X) ~ Normal
+- **Weibull shape $\beta$:** $\beta$ < 1 $\rightarrow$ decreasing failure rate; $\beta$ = 1 $\rightarrow$ Exponential; $\beta$ > 1 $\rightarrow$ increasing failure rate
+
+---
+
+### White Cane Connections
+
+- **Micro-state vibration amplitudes** → Gaussian (Normal) — confirmed by MSIM 510 paper
+- **Macro-state amplitudes** → GMM (mixture of Normals) — single Normal insufficient
+- **Vibration envelope** → Lognormal candidate — always positive, right-skewed
+- **Markov chain dwell times** → Exponential — memoryless property matches frame-by-frame transition decisions
